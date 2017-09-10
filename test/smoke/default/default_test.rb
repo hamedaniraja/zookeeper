@@ -13,6 +13,14 @@ unless os.windows?
 end
 
 # This is an example test, replace it with your own test.
-describe port(80), :skip do
-  it { should_not be_listening }
+# To make sure the service is up
+sleep(30)
+
+describe service 'zookeeper' do
+  it { should be_enabled }
+  it { should be_running }
+end
+
+describe port 2181 do
+  it { should be_listening }
 end

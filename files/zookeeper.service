@@ -1,0 +1,16 @@
+[Unit]
+Description=Zookepper Service
+After=syslog.target network.target autofs.service nslcd.service nscd.service
+
+[Service]
+Type=forking
+User=zookeeper
+TimeoutStartSec="2min"
+TimeoutStopSec="2min"
+ExecStart=/usr/local/zookeeper/bin/zkServer.sh start
+ExecStop=/usr/local/zookeeper/bin/zkServer.sh stop
+Restart=on-abort
+
+
+[Install]
+WantedBy=multi-user.target
